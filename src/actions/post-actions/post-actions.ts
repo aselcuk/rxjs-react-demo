@@ -1,7 +1,7 @@
 import { map } from "rxjs/operators";
 import { Post } from "src/models/post/post";
 import { getPosts } from "src/services/post-service/post-service";
-import { postListState } from 'src/global-states/post-states/post-states'
+import { postListState, selectedPostState } from 'src/global-states/post-states/post-states'
 import { AxiosResponse } from "axios";
 
 export function getPostList(): void {
@@ -69,6 +69,27 @@ export function addDataToPostList(): void {
         postListState.next({
             ...postListState.value,
             postList: [...postListState.value.postList, newItem],
+            isLoading: false
+        });
+    }, 800);
+}
+
+export function getSelectedPost(post: Post): void {
+    selectedPostState.next({
+        ...selectedPostState.value,
+        isLoading: true
+    });
+
+    setTimeout(() => {
+        const asSelectedItem: Post = {
+            id: post.id,
+            userId: post.userId,
+            body: post.body,
+            title: post.title
+        };
+
+        selectedPostState.next({
+            ...asSelectedItem,
             isLoading: false
         });
     }, 800);

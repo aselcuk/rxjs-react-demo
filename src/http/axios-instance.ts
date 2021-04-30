@@ -7,17 +7,17 @@ export const http = axios.create({
 
 // İf you need interceptors
 http.interceptors.request.use(function (config) {
-    console.log("interceptor request", config);
+    // console.log("interceptor request", config);
     return config;
 }, function (error) {
-    console.log("interceptor request err", error);
+    // console.log("interceptor request err", error);
     return Promise.reject(error);
 })
 
 http.interceptors.response.use(function (response) {
-    console.log("interceptor response", response);
+    // console.log("interceptor response", response);
     return response;
 }, function (error) {
-    console.log("interceptor response err", error);
+    // console.log("interceptor response err", error);
     return Promise.reject(error);
 });

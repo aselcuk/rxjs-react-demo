@@ -7,3 +7,11 @@ export const postListState = new BehaviorSubject<PostList>({
     isLoading: true,
     postList: new Array<Post>()
 });
+
+export const selectedPostState = new BehaviorSubject<Post>({
+    id: 0,
+    body: '',
+    title: '',
+    userId: 0,
+    isLoading: false
+});
